@@ -35,12 +35,13 @@ public class Persona extends FileManager {
         this.telefono = telefono;
     }
 
+    
     public Persona() {}
-    
-    
 
-    
-    
+    public String getPath_persona() {
+        return path_persona;
+    }
+       
     public int getId_persona() {
         return id_persona;
     }
@@ -184,7 +185,8 @@ public class Persona extends FileManager {
                         if(temp==null)
                             temp=Character.toString(c);
                         else
-                            temp+=c;
+                            temp=temp+c;
+                        
                         continue;
                     }
                     else{
