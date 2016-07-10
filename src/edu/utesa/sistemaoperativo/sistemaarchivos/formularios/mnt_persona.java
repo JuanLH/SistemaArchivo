@@ -38,7 +38,11 @@ public class mnt_persona extends javax.swing.JFrame {
         ArrayList<Persona> list;
         try {
             list = p.getListaPersona(file);
-            txtId.setText(Integer.toString(list.get(list.size()-1).getId_persona()+1));
+            if(!list.isEmpty())
+                txtId.setText(Integer.toString(list.get(list.size()-1).getId_persona()+1));
+            else
+                txtId.setText("1");
+            
         } catch (IOException ex) {
             System.err.println("Error leyendo el archivo xxxxxxxxxxxxxxxxxx");
         }

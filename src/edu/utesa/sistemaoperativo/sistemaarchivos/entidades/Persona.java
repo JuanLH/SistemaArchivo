@@ -104,11 +104,11 @@ public class Persona extends FileManager {
                 list.get(i).setTelefono(telefono);
                 
                 writeTable(list);
-                break;
+                return true;
             }
         }
         
-        return true;
+        return false;
     }
     
     private void insertPersona(String id,String nombre,String apellido,String direccion,String telefono) throws IOException{

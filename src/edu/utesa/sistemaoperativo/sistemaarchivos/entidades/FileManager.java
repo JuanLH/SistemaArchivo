@@ -20,6 +20,7 @@ import java.io.InputStream;
 public class FileManager {
     
     String path_persona="//home//juanlht//NetBeansProjects//SistemaOperativo//src//edu//utesa//sistemaoperativo//sistemaarchivos//archivos//Persona";
+    String path_origen_ingreso="//home//juanlht//NetBeansProjects//SistemaOperativo//src//edu//utesa//sistemaoperativo//sistemaarchivos//archivos//Origen_ingreso";
     
     public boolean Exists(File file){
         if(file.exists())

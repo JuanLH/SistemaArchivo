@@ -5,6 +5,7 @@
  */
 package edu.utesa.sistemaoperativo.sistemaarchivos.run;
 
+import edu.utesa.sistemaoperativo.sistemaarchivos.entidades.Origen_ingreso;
 import edu.utesa.sistemaoperativo.sistemaarchivos.entidades.Persona;
 import java.io.File;
 import java.io.IOException;
@@ -19,27 +20,32 @@ import java.util.logging.Logger;
 public class Main {
     public static void main(String [] args){
         
+        
+            Origen_ingreso ing = new Origen_ingreso();
+            File f = new File("//home//juanlht//NetBeansProjects//SistemaOperativo//src//edu//utesa//sistemaoperativo//sistemaarchivos//archivos//Origen_ingreso");
+        
+            
+        
         try {
-            Persona p = new Persona();
-            File f = new File("//home//juanlht//NetBeansProjects//SistemaOperativo//src//edu//utesa//sistemaoperativo//sistemaarchivos//archivos//Persona");
-            p.isEmpy(f);
-            
-            ArrayList<Persona>  list = p.getListaPersona(f);
-            
+            ArrayList<Origen_ingreso>  list = ing.getLista(f);
+            for(int i = 0 ; i<list.size();i++){
+                System.out.println(list.get(i).getId_origen_ingreso()+" "+list.get(i).getDescripcion());
+            }
             //p.prn(list.get(0).getId_persona()+" "+list.get(0).getNombre());
-            if(list.isEmpty()){
-                System.out.print("Vacia");
-                p.addPersona("Juan", "Hiciano", "Los reyes","809-576-6074");
+            /*if(list.isEmpty()){
+            System.out.print("Vacia");
+            p.addPersona("Juan", "Hiciano", "Los reyes","809-576-6074");
             }
             else{
-                p.addPersona("Juan", "Hiciano", "Los reyes","809-576-6074");
-                 p.printTable();
-                
-            }
+            p.addPersona("Juan", "Hiciano", "Los reyes","809-576-6074");
+            p.printTable();
+            
+            }*/
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+     
+        /*
         Persona per = new Persona();
         File file = new File("//home//juanlht//NetBeansProjects//SistemaOperativo//src//edu//utesa//sistemaoperativo//sistemaarchivos//archivos//Persona");
         try {
@@ -56,7 +62,7 @@ public class Main {
             }
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
         
         
         
