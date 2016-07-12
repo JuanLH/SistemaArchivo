@@ -23,6 +23,7 @@ public class FileManager {
     String path_origen_ingreso="//home//juanlht//NetBeansProjects//SistemaOperativo//src//edu//utesa//sistemaoperativo//sistemaarchivos//archivos//Origen_ingreso";
     String path_tipo_cuenta="//home//juanlht//NetBeansProjects//SistemaOperativo//src//edu//utesa//sistemaoperativo//sistemaarchivos//archivos//Tipo_cuenta";
     String path_cuenta="//home//juanlht//NetBeansProjects//SistemaOperativo//src//edu//utesa//sistemaoperativo//sistemaarchivos//archivos//Cuenta";
+    String path_transferencia="//home//juanlht//NetBeansProjects//SistemaOperativo//src/edu//utesa//sistemaoperativo//sistemaarchivos//archivos//Transferencia";
     
     public boolean Exists(File file){
         if(file.exists())
