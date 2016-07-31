@@ -6,6 +6,7 @@
 package edu.utesa.sistemaoperativo.sistemaarchivos.formularios;
 import edu.utesa.sistemaoperativo.sistemaarchivos.Dto.Dto_Cuenta;
 import edu.utesa.sistemaoperativo.sistemaarchivos.Dto.Dto_Persona;
+import edu.utesa.sistemaoperativo.sistemaarchivos.entidades.Cuenta;
 import edu.utesa.sistemaoperativo.sistemaarchivos.entidades.Ingreso;
 import edu.utesa.sistemaoperativo.sistemaarchivos.entidades.Transferencia;
 import edu.utesa.sistemaoperativo.sistemaarchivos.utilidades.Mensajes;
@@ -29,11 +30,13 @@ public class mant_ingreso extends javax.swing.JDialog {
      */
     
     Ingreso I;
+    Cuenta C;
     File file;
     int c;
     public mant_ingreso() {
         initComponents();
         I=new Ingreso();
+        C= new Cuenta();
         file= new File(I.getPath_Ingreso());
         
     }
@@ -184,7 +187,7 @@ public class mant_ingreso extends javax.swing.JDialog {
         txtCuentaOrigen.setEnabled(false);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setText("Id_cuenta_origen:");
+        jLabel2.setText("Id_cuenta:");
 
         jButton1.setText("...");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -277,8 +280,7 @@ public class mant_ingreso extends javax.swing.JDialog {
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                             .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtMonto1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addComponent(txtMonto1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(txtComentario))))
@@ -353,7 +355,8 @@ public final void setNextId(){
         catch (IndexOutOfBoundsException ex){
             System.err.println("index incorrecto xxxxxxxxxxxxxxxxxxxxx");
         }
-    }
+}
+
 private void cleanTxt(){
         txtCuentaOrigen.setText("");
         txtCuenta.setText("");
@@ -363,6 +366,7 @@ private void cleanTxt(){
         txtComentario.setText("");
         setNextId();
     }
+
     private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
         if(!btnInsertar.getText().equals("Modificar")){
             
@@ -372,6 +376,7 @@ private void cleanTxt(){
                 try 
                 {
                     I.add(txtCuenta.getText(), txtCuentaOrigen.getText(), txtIdPersona.getText(), txtMonto1.getText(), txtHora.getText(), txtComentario.getText());
+                    
                     cleanTxt();
                 } 
                 catch (IOException ex) {

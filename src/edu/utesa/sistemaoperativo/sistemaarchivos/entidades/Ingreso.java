@@ -244,9 +244,11 @@ public class Ingreso extends FileManager {
         return list;
     }
     
-   public void add(String id_cuenta,String id_origen_ingreso, String id_persona, String monto, String time, String comentario) throws IOException{
+   public void add(String id_cuenta,String id_origen_ingreso, String id_persona,
+           String monto, String time, String comentario) throws IOException{
+       
         File file = new File(path_ingreso);
-       ArrayList<Ingreso> list = getLista(file);
+        ArrayList<Ingreso> list = getLista(file);
         
         if(Exists(file) && file.isFile()){
             
@@ -257,7 +259,19 @@ public class Ingreso extends FileManager {
                     writer = new FileWriter(file);
                     writer.write(1+","+id_cuenta+","+id_origen_ingreso+","+id_persona+","+monto+","+time+","+comentario+"\n");
                     writer.flush();
+                    
+                    Cuenta c = new Cuenta();
+                    ArrayList<Cuenta> listC= c.getLista(file);
+                    for(int i = 0;i<listC.size();i++){
+                        if(listC.get(i).getId_cuenta()==this.id_cuenta){
+                            listC.get(i).setBalance(listC.get(i).getBalance()+Float.parseFloat(monto));
+                            c.update(listC.get(i).getId_cuenta(), Integer.toString(listC.get(i).getId_tipo_cuenta()),
+                                    listC.get(i).getDescripcion(), Float.toString(listC.get(i).getBalance()));
+                            break;
+                        }
+                    }
                     prnln("++Se inserto correctamente");
+                    
                }
                 
             }
