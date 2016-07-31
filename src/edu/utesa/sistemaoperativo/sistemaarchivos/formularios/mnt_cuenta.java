@@ -27,8 +27,8 @@ public class mnt_cuenta extends javax.swing.JDialog {
     Cuenta cuenta;
     
     
-    public mnt_cuenta(javax.swing.JFrame parent, boolean modal){
-        super(parent, modal);
+    public mnt_cuenta(javax.swing.JFrame parent){
+        super(parent, true);
         initComponents();
         cuenta = new Cuenta();
         file = new File(cuenta.getPath_cuenta());
@@ -120,7 +120,7 @@ public class mnt_cuenta extends javax.swing.JDialog {
         btnInsertar = new javax.swing.JButton();
         btnInsertar1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);

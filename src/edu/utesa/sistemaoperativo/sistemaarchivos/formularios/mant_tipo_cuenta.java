@@ -8,16 +8,18 @@ package edu.utesa.sistemaoperativo.sistemaarchivos.formularios;
 import edu.utesa.sistemaoperativo.sistemaarchivos.entidades.Tipo_cuenta;
 import edu.utesa.sistemaoperativo.sistemaarchivos.entidades.Origen_ingreso;
 import edu.utesa.sistemaoperativo.sistemaarchivos.entidades.Persona;
+import edu.utesa.sistemaoperativo.sistemaarchivos.utilidades.Form;
 import edu.utesa.sistemaoperativo.sistemaarchivos.utilidades.Mensajes;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Eduardo Liz
  */
-public class mant_tipo_cuenta extends javax.swing.JFrame {
+public class mant_tipo_cuenta extends javax.swing.JDialog {
 
     Tipo_cuenta tipo;
     File file;
@@ -29,6 +31,16 @@ public class mant_tipo_cuenta extends javax.swing.JFrame {
         tipo = new Tipo_cuenta();
         file = new File(tipo.getPath_tipo_cuenta());
         setNextId();
+        
+    }
+    
+     public mant_tipo_cuenta(JFrame parent) {
+        super(parent,true); 
+        initComponents();
+        tipo = new Tipo_cuenta();
+        file = new File(tipo.getPath_tipo_cuenta());
+        setNextId();
+        
     }
 
     public final void setNextId(){
@@ -70,7 +82,7 @@ public class mant_tipo_cuenta extends javax.swing.JFrame {
         btnConsultar = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Id_tipo_cuenta:");
@@ -159,16 +171,12 @@ public class mant_tipo_cuenta extends javax.swing.JFrame {
                                 .addGap(14, 14, 14)
                                 .addComponent(btnEliminar)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnConsultar)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton5)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(12, Short.MAX_VALUE))))
+                                .addComponent(btnConsultar))
+                            .addComponent(jLabel3)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jButton5)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
@@ -212,7 +220,7 @@ public class mant_tipo_cuenta extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+        //this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void btnElegirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnElegirActionPerformed

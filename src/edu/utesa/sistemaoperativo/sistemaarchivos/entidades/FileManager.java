@@ -21,10 +21,13 @@ public class FileManager {
     
     String path_persona="//home//juanlht//NetBeansProjects//SistemaOperativo//src//edu//utesa//sistemaoperativo//sistemaarchivos//archivos//Persona";
     String path_origen_ingreso="//home//juanlht//NetBeansProjects//SistemaOperativo//src//edu//utesa//sistemaoperativo//sistemaarchivos//archivos//Origen_ingreso";
+    String path_origen_gasto="//home//juanlht//NetBeansProjects//SistemaOperativo//src//edu//utesa//sistemaoperativo//sistemaarchivos//archivos//Origen_gasto";
     String path_tipo_cuenta="//home//juanlht//NetBeansProjects//SistemaOperativo//src//edu//utesa//sistemaoperativo//sistemaarchivos//archivos//Tipo_cuenta";
     String path_cuenta="//home//juanlht//NetBeansProjects//SistemaOperativo//src//edu//utesa//sistemaoperativo//sistemaarchivos//archivos//Cuenta";
     String path_transferencia="//home//juanlht//NetBeansProjects//SistemaOperativo//src/edu//utesa//sistemaoperativo//sistemaarchivos//archivos//Transferencia";
-    
+    String path_ingreso="//home//juanlht//NetBeansProjects//SistemaOperativo//src/edu//utesa//sistemaoperativo//sistemaarchivos//archivos//Ingreso";
+    String path_cuenta_vs_persona = "//home//juanlht//NetBeansProjects//SistemaOperativo//src/edu//utesa//sistemaoperativo//sistemaarchivos//archivos//Cuenta_vs_Persona";
+    String path_gasto="//home//juanlht//NetBeansProjects//SistemaOperativo//src/edu//utesa//sistemaoperativo//sistemaarchivos//archivos//Gasto";
     public boolean Exists(File file){
         if(file.exists())
             return true;

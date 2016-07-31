@@ -5,8 +5,8 @@
  */
 package edu.utesa.sistemaoperativo.sistemaarchivos.formularios;
 
+import edu.utesa.sistemaoperativo.sistemaarchivos.entidades.Origen_gasto;
 import edu.utesa.sistemaoperativo.sistemaarchivos.entidades.Origen_ingreso;
-import edu.utesa.sistemaoperativo.sistemaarchivos.entidades.Persona;
 import edu.utesa.sistemaoperativo.sistemaarchivos.utilidades.Mensajes;
 import java.io.File;
 import java.io.IOException;
@@ -18,35 +18,35 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author juanlht
  */
-public class mnt_origen_ingreso extends javax.swing.JDialog {
+public class mnt_origen_gasto extends javax.swing.JDialog {
 
     /**
-     * Creates new form mnt_origen_ingreso
+     * Creates new form mnt_origen_gasto
      */
-    Origen_ingreso origen;
-    File file;
     
-    public mnt_origen_ingreso() {
+    Origen_gasto orig_g;
+    File file;
+    public mnt_origen_gasto() {
         initComponents();
-        origen = new Origen_ingreso();
-        file = new File(origen.getPath_origen_ingreso());
+        orig_g = new Origen_gasto();
+        file = new File(orig_g.getPath_origen_gasto());
         setNextId();
     }
     
-    public mnt_origen_ingreso(JFrame parent) {
+    public mnt_origen_gasto(JFrame parent) {
         super(parent,true);
         initComponents();
-        origen = new Origen_ingreso();
-        file = new File(origen.getPath_origen_ingreso());
+        orig_g = new Origen_gasto();
+        file = new File(orig_g.getPath_origen_gasto());
         setNextId();
     }
     
     public final void setNextId(){
-        ArrayList<Origen_ingreso> list;
+        ArrayList<Origen_gasto> list;
         try {
-            list = origen.getLista(file);
+            list = orig_g.getLista(file);
             if(!list.isEmpty())
-                txtId.setText(Integer.toString(list.get(list.size()-1).getId_origen_ingreso()+1));
+                txtId.setText(Integer.toString(list.get(list.size()-1).getId_origen_gasto()+1));
             else
                 txtId.setText("1");
             
@@ -58,11 +58,6 @@ public class mnt_origen_ingreso extends javax.swing.JDialog {
         }
     }
     
-    public final void cleanTxt(){
-        setNextId();
-        txtNombre.setText("");
-        
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -73,6 +68,8 @@ public class mnt_origen_ingreso extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton4 = new javax.swing.JButton();
+        btnInsertar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtId = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -82,13 +79,27 @@ public class mnt_origen_ingreso extends javax.swing.JDialog {
         btnElegir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableOrigenIngreso = new javax.swing.JTable();
-        jButton4 = new javax.swing.JButton();
-        btnInsertar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jButton4.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jButton4.setText("Salir");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        btnInsertar.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        btnInsertar.setText("Insertar");
+        btnInsertar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInsertarActionPerformed(evt);
+            }
+        });
+
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
-        jLabel1.setText("Id_origen_ingreso:");
+        jLabel1.setText("Id_origen_gasto:");
 
         txtId.setDisabledTextColor(new java.awt.Color(239, 132, 26));
         txtId.setEnabled(false);
@@ -141,22 +152,6 @@ public class mnt_origen_ingreso extends javax.swing.JDialog {
             }
         });
         jScrollPane1.setViewportView(tableOrigenIngreso);
-
-        jButton4.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
-        jButton4.setText("Salir");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
-        btnInsertar.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
-        btnInsertar.setText("Insertar");
-        btnInsertar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInsertarActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -219,65 +214,6 @@ public class mnt_origen_ingreso extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        // TODO add your handling code here:
-       consultOrigenIngreso();
-    }//GEN-LAST:event_btnConsultarActionPerformed
-
-    public void consultOrigenIngreso(){
-        DefaultTableModel modelo = new DefaultTableModel();
-        
-        String [] cols = {"id","descripcion"};
-        for (int i=0;i<cols.length;i++)
-            modelo.addColumn(cols[i]);
-        
-        int k;
-        ArrayList<Origen_ingreso> list;
-        try {
-            list = origen.getLista(file);
-            for(Origen_ingreso ori : list){
-                k=0;
-                Object[] fila = new Object[2];
-                fila[k++]=(Object)ori.getId_origen_ingreso();
-                fila[k++]=(Object)ori.getDescripcion();
-                modelo.addRow(fila);
-            }
-            
-        } catch (IOException ex) {
-            System.err.println("Error al consultar Persona");
-        }
-        tableOrigenIngreso.setModel(modelo);
-    }
-    
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        try {
-            // TODO add your handling code here:
-            origen.delete(Integer.parseInt(txtId.getText()));
-            
-        } catch (IOException ex) {
-           System.err.println("Error eliminando la persona");
-        }
-        consultOrigenIngreso();
-        btnEliminar.setEnabled(false);
-        cleanTxt();
-
-    }//GEN-LAST:event_btnEliminarActionPerformed
-
-    private void btnElegirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnElegirActionPerformed
-        // TODO add your handling code here:
-        txtId.setText(tableOrigenIngreso.getModel().getValueAt(tableOrigenIngreso.getSelectedRow(), 0).toString());
-        txtNombre.setText(tableOrigenIngreso.getModel().getValueAt(tableOrigenIngreso.getSelectedRow(), 1).toString());
-        
-        btnInsertar.setText("Modificar");
-        btnEliminar.setEnabled(true);
-    }//GEN-LAST:event_btnElegirActionPerformed
-
-    private void tableOrigenIngresoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableOrigenIngresoMouseEntered
-        // TODO add your handling code here:
-        btnElegir.setEnabled(true);
-
-    }//GEN-LAST:event_tableOrigenIngresoMouseEntered
-
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         this.dispose();
@@ -289,7 +225,7 @@ public class mnt_origen_ingreso extends javax.swing.JDialog {
             {
                 try {
                     // TODO add your handling code here:
-                    origen.add(txtNombre.getText());
+                    orig_g.add(txtNombre.getText());
                     cleanTxt();
                 } catch (IOException ex) {
                     System.err.println("Error de lectura de archivo xxxxxxxxxxxxxxxx ");
@@ -302,7 +238,7 @@ public class mnt_origen_ingreso extends javax.swing.JDialog {
         }
         else{
             try {
-                origen.update(Integer.parseInt(txtId.getText()), txtNombre.getText());
+                orig_g.update(Integer.parseInt(txtId.getText()), txtNombre.getText());
                 btnEliminar.setEnabled(false);
                 btnInsertar.setText("Insertar");
                 cleanTxt();
@@ -310,9 +246,73 @@ public class mnt_origen_ingreso extends javax.swing.JDialog {
                 System.err.println("Error de lectura de archivo xxxxxxxxxxxxxxxx ");
             }
         }
-        consultOrigenIngreso();
-
+        consultOrigenGasto();
     }//GEN-LAST:event_btnInsertarActionPerformed
+
+    public final void cleanTxt(){
+        setNextId();
+        txtNombre.setText("");
+        
+    }
+    
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+        // TODO add your handling code here:
+        consultOrigenGasto();
+    }//GEN-LAST:event_btnConsultarActionPerformed
+
+    public void consultOrigenGasto(){
+        DefaultTableModel modelo = new DefaultTableModel();
+        
+        String [] cols = {"id","descripcion"};
+        for (int i=0;i<cols.length;i++)
+            modelo.addColumn(cols[i]);
+        
+        int k;
+        ArrayList<Origen_gasto> list;
+        try {
+            list = orig_g.getLista(file);
+            for(Origen_gasto ori : list){
+                k=0;
+                Object[] fila = new Object[2];
+                fila[k++]=(Object)ori.getId_origen_gasto();
+                fila[k++]=(Object)ori.getDecripcion();
+                modelo.addRow(fila);
+            }
+            
+        } catch (IOException ex) {
+            System.err.println("Error al consultar Persona");
+        }
+        tableOrigenIngreso.setModel(modelo);
+    }
+    
+    
+    
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        try {
+            // TODO add your handling code here:
+            orig_g.delete(Integer.parseInt(txtId.getText()));
+
+        } catch (IOException ex) {
+            System.err.println("Error eliminando la persona");
+        }
+        consultOrigenGasto();
+        btnEliminar.setEnabled(false);
+        cleanTxt();
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnElegirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnElegirActionPerformed
+        // TODO add your handling code here:
+        txtId.setText(tableOrigenIngreso.getModel().getValueAt(tableOrigenIngreso.getSelectedRow(), 0).toString());
+        txtNombre.setText(tableOrigenIngreso.getModel().getValueAt(tableOrigenIngreso.getSelectedRow(), 1).toString());
+
+        btnInsertar.setText("Modificar");
+        btnEliminar.setEnabled(true);
+    }//GEN-LAST:event_btnElegirActionPerformed
+
+    private void tableOrigenIngresoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableOrigenIngresoMouseEntered
+        // TODO add your handling code here:
+        btnElegir.setEnabled(true);
+    }//GEN-LAST:event_tableOrigenIngresoMouseEntered
 
     /**
      * @param args the command line arguments
@@ -331,20 +331,20 @@ public class mnt_origen_ingreso extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(mnt_origen_ingreso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(mnt_origen_gasto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(mnt_origen_ingreso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(mnt_origen_gasto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(mnt_origen_ingreso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(mnt_origen_gasto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(mnt_origen_ingreso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(mnt_origen_gasto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new mnt_origen_ingreso().setVisible(true);
+                new mnt_origen_gasto().setVisible(true);
             }
         });
     }

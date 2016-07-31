@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author juanlht
  */
-public class mnt_persona extends javax.swing.JFrame {
+public class mnt_persona extends javax.swing.JDialog {
 
     /**
      * Creates new form mnt_persona
@@ -28,6 +28,14 @@ public class mnt_persona extends javax.swing.JFrame {
     
     
     public mnt_persona() {
+        initComponents();
+        p = new Persona();
+        file = new File(p.getPath_persona());
+        setNextId();
+    }
+    
+    public mnt_persona(javax.swing.JFrame parent) {
+        super(parent,true);
         initComponents();
         p = new Persona();
         file = new File(p.getPath_persona());
@@ -78,7 +86,7 @@ public class mnt_persona extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         btnInsertar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N

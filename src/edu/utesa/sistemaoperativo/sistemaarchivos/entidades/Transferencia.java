@@ -170,7 +170,7 @@ public class Transferencia extends FileManager {
                 }
                 
                 if(id_persona==null){
-                    if(c != '\n'){
+                    if(c != ','){
                         if(temp==null)
                             temp=Character.toString(c);
                         else
@@ -185,7 +185,7 @@ public class Transferencia extends FileManager {
                 }  
                 
                 if(monto==null){
-                    if(c != '\n'){
+                    if(c != ','){
                         if(temp==null)
                             temp=Character.toString(c);
                         else
@@ -200,7 +200,7 @@ public class Transferencia extends FileManager {
                 }
                 
                 if(time==null){
-                    if(c != '\n'){
+                    if(c != ','){
                         if(temp==null)
                             temp=Character.toString(c);
                         else

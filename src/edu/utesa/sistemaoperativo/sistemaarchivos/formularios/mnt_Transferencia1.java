@@ -5,6 +5,7 @@
  */
 package edu.utesa.sistemaoperativo.sistemaarchivos.formularios;
 
+import edu.utesa.sistemaoperativo.sistemaarchivos.Dto.Dto_Persona;
 import edu.utesa.sistemaoperativo.sistemaarchivos.Dto.Dto_Cuenta;
 import edu.utesa.sistemaoperativo.sistemaarchivos.entidades.Transferencia;
 import edu.utesa.sistemaoperativo.sistemaarchivos.entidades.Cuenta;
@@ -12,13 +13,14 @@ import edu.utesa.sistemaoperativo.sistemaarchivos.utilidades.Mensajes;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Eduardo Liz
  */
-public class mnt_Transferencia extends javax.swing.JDialog {
+public class mnt_Transferencia1 extends javax.swing.JDialog {
 
     /**
      * Creates new form mnt_Transferencia1
@@ -27,7 +29,7 @@ public class mnt_Transferencia extends javax.swing.JDialog {
     File file;
     Transferencia transferencia;
     
-    public mnt_Transferencia(javax.swing.JFrame parent, boolean modal) {
+    public mnt_Transferencia1(javax.swing.JFrame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         transferencia = new Transferencia();
@@ -35,12 +37,14 @@ public class mnt_Transferencia extends javax.swing.JDialog {
         setNextId();
     }
     
-    public mnt_Transferencia() {
+    public mnt_Transferencia1() {
         initComponents();
         transferencia = new Transferencia();
         file = new File(transferencia.getPath_transferencia());
         setNextId();
     }
+    
+    public int c = 0;
     
     public final void setNextId(){
         ArrayList<Transferencia> list;
@@ -118,7 +122,6 @@ public class mnt_Transferencia extends javax.swing.JDialog {
         jButton10 = new javax.swing.JButton();
         txtComentario = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        txtHora = new javax.swing.JFormattedTextField();
         jLabel2 = new javax.swing.JLabel();
         txtCuenta = new javax.swing.JTextField();
         btnElegir = new javax.swing.JButton();
@@ -133,6 +136,7 @@ public class mnt_Transferencia extends javax.swing.JDialog {
         txtIdPersona = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
+        txtHora = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -146,6 +150,11 @@ public class mnt_Transferencia extends javax.swing.JDialog {
 
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton5.setText("...");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         tableTransferencia.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -177,8 +186,6 @@ public class mnt_Transferencia extends javax.swing.JDialog {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Id_transferencia:");
-
-        txtHora.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("Id_cuenta_origen:");
@@ -225,6 +232,8 @@ public class mnt_Transferencia extends javax.swing.JDialog {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("Id_persona:");
 
+        txtCuentaOrigen.setEnabled(false);
+
         btnConsultar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnConsultar.setText("Consultar");
         btnConsultar.addActionListener(new java.awt.event.ActionListener() {
@@ -236,11 +245,25 @@ public class mnt_Transferencia extends javax.swing.JDialog {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setText("Monto:");
 
+        txtIdPersona.setEnabled(false);
+
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel6.setText("Hora:");
 
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton4.setText("...");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        txtHora.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
+        txtHora.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtHoraFocusLost(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -261,11 +284,6 @@ public class mnt_Transferencia extends javax.swing.JDialog {
                             .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtMonto)
-                                    .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(368, 368, 368))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(txtComentario)
@@ -275,7 +293,7 @@ public class mnt_Transferencia extends javax.swing.JDialog {
                                             .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(9, 9, 9)
                                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(53, 53, 53)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel2)
                                             .addComponent(jLabel4))
@@ -286,8 +304,14 @@ public class mnt_Transferencia extends javax.swing.JDialog {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(30, 30, 30))))
+                                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 83, Short.MAX_VALUE)))
+                                .addGap(30, 30, 30))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtMonto, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                                    .addComponent(txtHora))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnElegir)
                         .addGap(34, 34, 34)
@@ -374,10 +398,13 @@ public class mnt_Transferencia extends javax.swing.JDialog {
 
     private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
         if(!btnInsertar.getText().equals("Modificar")){
-            if(!(txtCuentaOrigen.getText().isEmpty() && txtCuenta.getText().isEmpty() && txtIdPersona.getText().isEmpty() && txtMonto.getText().isEmpty() && txtHora.getText().isEmpty() && txtComentario.getText().isEmpty()))
+            if(txtHora.getText().isEmpty()){
+                Mensajes.mensajeError(evt, "El Formato de hora debe ser el siguiente: hh:mm a");
+                return;
+            }
+            if(!(txtCuentaOrigen.getText().isEmpty() || txtCuenta.getText().isEmpty() || txtIdPersona.getText().isEmpty() || txtMonto.getText().isEmpty() || txtComentario.getText().isEmpty()))
             {
                 try {
-                    // TODO add your handling code here:
                     transferencia.add(txtCuentaOrigen.getText(), txtCuenta.getText(), txtIdPersona.getText(), txtMonto.getText(), txtHora.getText(), txtComentario.getText());
                     cleanTxt();
                 } catch (IOException ex) {
@@ -426,19 +453,60 @@ public class mnt_Transferencia extends javax.swing.JDialog {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        c = 1;
         cns_cuenta form = new cns_cuenta(this,true);
         form.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
-        if(Dto_Cuenta.getCuenta().getId_cuenta()==0){
-            
-        }    
-        else{
-            txtCuenta.setText(Integer.toString(Dto_Cuenta.getCuenta().getId_cuenta()));
+        if(c==1 || c==2){
+            if(Dto_Cuenta.getCuenta().getId_cuenta()==0){
+
+            }    
+            else{
+                if(c==1){
+                    txtCuenta.setText(Integer.toString(Dto_Cuenta.getCuenta().getId_cuenta()));
+                }
+                if(c==2){
+                    txtCuentaOrigen.setText(Integer.toString(Dto_Cuenta.getCuenta().getId_cuenta()));
+                }  
+            }
+        }
+        
+        if(c==3){
+            if(Dto_Persona.getPersona().getId_persona() == 0){
+
+            }
+            else{
+                if(c==3){
+                    txtIdPersona.setText(Integer.toString(Dto_Persona.getPersona().getId_persona()));
+                }
+            }
         }
     }//GEN-LAST:event_formWindowActivated
+
+    private void txtHoraFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtHoraFocusLost
+        // TODO add your handling code here:
+        if(txtHora.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "El Formato de hora debe ser el siguiente: hh:mm a","Formato de Hora", JOptionPane.INFORMATION_MESSAGE);
+            }
+        
+    }//GEN-LAST:event_txtHoraFocusLost
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        c = 2;
+        cns_cuenta form = new cns_cuenta(this,true);
+        form.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        c = 3;
+        cns_persona form = new cns_persona(this,true);
+        form.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -457,21 +525,20 @@ public class mnt_Transferencia extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(mnt_Transferencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(mnt_Transferencia1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(mnt_Transferencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(mnt_Transferencia1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(mnt_Transferencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(mnt_Transferencia1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(mnt_Transferencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(mnt_Transferencia1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                mnt_Transferencia dialog = new mnt_Transferencia(new javax.swing.JFrame(), true);
+                mnt_Transferencia1 dialog = new mnt_Transferencia1(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
