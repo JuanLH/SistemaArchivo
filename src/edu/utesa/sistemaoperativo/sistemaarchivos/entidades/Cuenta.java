@@ -15,7 +15,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 /**
- *
  * @author juanlht
  */
 public class Cuenta extends FileManager{
@@ -77,7 +76,7 @@ public class Cuenta extends FileManager{
     
     public ArrayList<Cuenta>  getLista (File file) throws FileNotFoundException, IOException{
         ArrayList<Cuenta> list = new ArrayList<Cuenta>();
-         // create input stream from file input stream
+        // create input stream from file input stream
             InputStream is = new FileInputStream(file);
             
             // create data input stream

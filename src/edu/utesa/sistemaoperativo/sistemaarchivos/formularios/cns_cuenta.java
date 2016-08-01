@@ -8,9 +8,11 @@ package edu.utesa.sistemaoperativo.sistemaarchivos.formularios;
 import edu.utesa.sistemaoperativo.sistemaarchivos.Dto.Dto_Cuenta;
 import edu.utesa.sistemaoperativo.sistemaarchivos.entidades.Cuenta;
 import edu.utesa.sistemaoperativo.sistemaarchivos.entidades.Tipo_cuenta;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.EventListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -40,6 +42,9 @@ public class cns_cuenta extends javax.swing.JDialog {
         file = new File(cuenta.getPath_cuenta());
         txtTipo.setEnabled(true);
     }
+    
+    
+   
 
     /**
      * This method is called from within the constructor to initialize the form.

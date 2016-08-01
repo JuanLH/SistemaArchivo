@@ -19,15 +19,18 @@ import java.io.InputStream;
  */
 public class FileManager {
     
-    String path_persona="//home//juanlht//NetBeansProjects//SistemaOperativo//src//edu//utesa//sistemaoperativo//sistemaarchivos//archivos//Persona";
-    String path_origen_ingreso="//home//juanlht//NetBeansProjects//SistemaOperativo//src//edu//utesa//sistemaoperativo//sistemaarchivos//archivos//Origen_ingreso";
-    String path_origen_gasto="//home//juanlht//NetBeansProjects//SistemaOperativo//src//edu//utesa//sistemaoperativo//sistemaarchivos//archivos//Origen_gasto";
-    String path_tipo_cuenta="//home//juanlht//NetBeansProjects//SistemaOperativo//src//edu//utesa//sistemaoperativo//sistemaarchivos//archivos//Tipo_cuenta";
-    String path_cuenta="//home//juanlht//NetBeansProjects//SistemaOperativo//src//edu//utesa//sistemaoperativo//sistemaarchivos//archivos//Cuenta";
-    String path_transferencia="//home//juanlht//NetBeansProjects//SistemaOperativo//src/edu//utesa//sistemaoperativo//sistemaarchivos//archivos//Transferencia";
-    String path_ingreso="//home//juanlht//NetBeansProjects//SistemaOperativo//src/edu//utesa//sistemaoperativo//sistemaarchivos//archivos//Ingreso";
-    String path_cuenta_vs_persona = "//home//juanlht//NetBeansProjects//SistemaOperativo//src/edu//utesa//sistemaoperativo//sistemaarchivos//archivos//Cuenta_vs_Persona";
-    String path_gasto="//home//juanlht//NetBeansProjects//SistemaOperativo//src/edu//utesa//sistemaoperativo//sistemaarchivos//archivos//Gasto";
+    protected String path_persona="C:\\Users\\JuanL\\OneDrive\\Documents\\NetBeansProjects\\SistemaArchivo\\src\\edu\\utesa\\sistemaoperativo\\sistemaarchivos\\archivos\\Persona";
+    protected String path_origen_ingreso="C:\\Users\\JuanL\\OneDrive\\Documents\\NetBeansProjects\\SistemaArchivo\\src\\edu\\utesa\\sistemaoperativo\\sistemaarchivos\\archivos\\Origen_ingreso";
+    protected String path_origen_gasto="C:\\Users\\JuanL\\OneDrive\\Documents\\NetBeansProjects\\SistemaArchivo\\src\\edu\\utesa\\sistemaoperativo\\sistemaarchivos\\archivos\\Origen_gasto";
+    protected String path_tipo_cuenta="C:\\Users\\JuanL\\OneDrive\\Documents\\NetBeansProjects\\SistemaArchivo\\src\\edu\\utesa\\sistemaoperativo\\sistemaarchivos\\archivos\\Tipo_cuenta";
+    protected String path_cuenta="C:\\Users\\JuanL\\OneDrive\\Documents\\NetBeansProjects\\SistemaArchivo\\src\\edu\\utesa\\sistemaoperativo\\sistemaarchivos\\archivos\\Cuenta";
+    protected String path_transferencia="C:\\Users\\JuanL\\OneDrive\\Documents\\NetBeansProjects\\SistemaArchivo\\src\\edu\\utesa\\sistemaoperativo\\sistemaarchivos\\archivos\\Transferencia";
+    protected String path_ingreso="C:\\Users\\JuanL\\OneDrive\\Documents\\NetBeansProjects\\SistemaArchivo\\src\\edu\\utesa\\sistemaoperativo\\sistemaarchivos\\archivos\\Ingreso";
+    protected String path_cuenta_vs_persona = "C:\\Users\\JuanL\\OneDrive\\Documents\\NetBeansProjects\\SistemaArchivo\\src\\edu\\utesa\\sistemaoperativo\\sistemaarchivos\\archivos\\Cuenta_vs_Persona";
+    protected String path_gasto="C:\\Users\\JuanL\\OneDrive\\Documents\\NetBeansProjects\\SistemaArchivo\\src\\edu\\utesa\\sistemaoperativo\\sistemaarchivos\\archivos\\Gasto";
+    public String path_peticion="C:\\Users\\JuanL\\OneDrive\\Documents\\CarpetaPruebaS.O\\peticion.txt";
+    public String path_respuesta = "C:\\Users\\JuanL\\OneDrive\\Documents\\CarpetaPruebaS.O\\respuesta.txt";
+    
     public boolean Exists(File file){
         if(file.exists())
             return true;
