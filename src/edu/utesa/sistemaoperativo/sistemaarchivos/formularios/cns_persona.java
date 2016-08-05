@@ -137,7 +137,7 @@ public class cns_persona extends javax.swing.JDialog {
         ArrayList<Persona> list = new ArrayList<Persona>();
 
         try {
-            list = persona.getListaPersona(file);
+            list = persona.getLista(file);
         } catch (IOException ex) {
             Logger.getLogger(cns_persona.class.getName()).log(Level.SEVERE, null, ex);
         }

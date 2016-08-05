@@ -5,13 +5,16 @@
  */
 package edu.utesa.sistemaoperativo.sistemaarchivos.entidades;
 
+import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Reader;
 
 /**
  *
@@ -19,17 +22,7 @@ import java.io.InputStream;
  */
 public class FileManager {
     
-    protected String path_persona="C:\\Users\\JuanL\\OneDrive\\Documents\\NetBeansProjects\\SistemaArchivo\\src\\edu\\utesa\\sistemaoperativo\\sistemaarchivos\\archivos\\Persona";
-    protected String path_origen_ingreso="C:\\Users\\JuanL\\OneDrive\\Documents\\NetBeansProjects\\SistemaArchivo\\src\\edu\\utesa\\sistemaoperativo\\sistemaarchivos\\archivos\\Origen_ingreso";
-    protected String path_origen_gasto="C:\\Users\\JuanL\\OneDrive\\Documents\\NetBeansProjects\\SistemaArchivo\\src\\edu\\utesa\\sistemaoperativo\\sistemaarchivos\\archivos\\Origen_gasto";
-    protected String path_tipo_cuenta="C:\\Users\\JuanL\\OneDrive\\Documents\\NetBeansProjects\\SistemaArchivo\\src\\edu\\utesa\\sistemaoperativo\\sistemaarchivos\\archivos\\Tipo_cuenta";
-    protected String path_cuenta="C:\\Users\\JuanL\\OneDrive\\Documents\\NetBeansProjects\\SistemaArchivo\\src\\edu\\utesa\\sistemaoperativo\\sistemaarchivos\\archivos\\Cuenta";
-    protected String path_transferencia="C:\\Users\\JuanL\\OneDrive\\Documents\\NetBeansProjects\\SistemaArchivo\\src\\edu\\utesa\\sistemaoperativo\\sistemaarchivos\\archivos\\Transferencia";
-    protected String path_ingreso="C:\\Users\\JuanL\\OneDrive\\Documents\\NetBeansProjects\\SistemaArchivo\\src\\edu\\utesa\\sistemaoperativo\\sistemaarchivos\\archivos\\Ingreso";
-    protected String path_cuenta_vs_persona = "C:\\Users\\JuanL\\OneDrive\\Documents\\NetBeansProjects\\SistemaArchivo\\src\\edu\\utesa\\sistemaoperativo\\sistemaarchivos\\archivos\\Cuenta_vs_Persona";
-    protected String path_gasto="C:\\Users\\JuanL\\OneDrive\\Documents\\NetBeansProjects\\SistemaArchivo\\src\\edu\\utesa\\sistemaoperativo\\sistemaarchivos\\archivos\\Gasto";
-    public String path_peticion="C:\\Users\\JuanL\\OneDrive\\Documents\\CarpetaPruebaS.O\\peticion.txt";
-    public String path_respuesta = "C:\\Users\\JuanL\\OneDrive\\Documents\\CarpetaPruebaS.O\\respuesta.txt";
+    
     
     public boolean Exists(File file){
         if(file.exists())
@@ -72,6 +65,14 @@ public class FileManager {
             char c = (char)bs[i];
              txt+=c;
         }
+        return txt;
+    }
+    
+    
+    public String getLineFile(File file) throws FileNotFoundException, IOException{
+        String txt = "";
+        BufferedReader bf = new BufferedReader(new FileReader(file));
+        txt = bf.readLine();
         return txt;
     }
     

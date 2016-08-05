@@ -94,7 +94,7 @@ public class Transferencia extends FileManager {
     }
     
     public String getPath_transferencia() {
-        return path_transferencia;
+        return Rutas.path_transferencia;
     }
     
     public ArrayList<Transferencia>  getLista (File file) throws FileNotFoundException, IOException{
@@ -236,7 +236,7 @@ public class Transferencia extends FileManager {
     }
     
     public void add(String id_cuenta_origen,String id_cuenta_destino, String id_persona, String monto, String time, String comentario) throws IOException{
-        File file = new File(path_transferencia);
+        File file = new File(Rutas.path_transferencia);
         ArrayList<Transferencia> list = getLista(file);
         
         if(Exists(file) && file.isFile()){
@@ -268,7 +268,7 @@ public class Transferencia extends FileManager {
     }
     
     public boolean update(int id,String id_cuenta_origen,String id_cuenta_destino,String id_persona, String monto, String time, String comentario) throws IOException{
-        File file = new File(path_transferencia);
+        File file = new File(Rutas.path_transferencia);
         ArrayList<Transferencia> list = getLista(file);
         for(int i=0;i<list.size();i++){
             if(list.get(i).getId_transferencia()==id){
@@ -287,7 +287,7 @@ public class Transferencia extends FileManager {
     }
     
     private void insert(String id,String id_cuenta_origen,String id_cuenta_destino,String id_persona, String monto, String time, String comentario) throws IOException{
-        File file = new File(path_transferencia);
+        File file = new File(Rutas.path_transferencia);
         if(Exists(file) && file.isFile()){
             String transferencia=geTextFile(file);
             FileWriter writer = new FileWriter(file);
@@ -297,7 +297,7 @@ public class Transferencia extends FileManager {
     }
     
     private void writeTable(ArrayList<Transferencia> list) throws IOException{
-        File file = new File(path_transferencia);
+        File file = new File(Rutas.path_transferencia);
         delete(file);
         for(int j=0;j<list.size();j++){
             insert(Integer.toString(list.get(j).getId_transferencia()), 
@@ -311,7 +311,7 @@ public class Transferencia extends FileManager {
     }
     
     public boolean delete(int id) throws IOException{
-        File file = new File(path_transferencia);
+        File file = new File(Rutas.path_transferencia);
         ArrayList<Transferencia> list = getLista(file);
         for(int i=0;i<list.size();i++){
             if(list.get(i).getId_transferencia()==id){

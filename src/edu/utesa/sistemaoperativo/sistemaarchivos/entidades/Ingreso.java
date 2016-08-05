@@ -103,7 +103,7 @@ public class Ingreso extends FileManager {
     }
     
     public String getPath_Ingreso() {
-        return path_ingreso;
+        return Rutas.path_ingreso;
     }
     
     public ArrayList<Ingreso>  getLista (File file) throws FileNotFoundException, IOException{
@@ -247,7 +247,7 @@ public class Ingreso extends FileManager {
    public void add(String id_cuenta,String id_origen_ingreso, String id_persona,
            String monto, String time, String comentario) throws IOException{
        
-        File file = new File(path_ingreso);
+        File file = new File(Rutas.path_ingreso);
         ArrayList<Ingreso> list = getLista(file);
         
         if(Exists(file) && file.isFile()){
@@ -291,7 +291,7 @@ public class Ingreso extends FileManager {
     }
     
     public boolean update(int id,String id_cuenta,String id_origen_ingreso,String id_persona, String monto, String time, String comentario) throws IOException{
-        File file = new File(path_ingreso);
+        File file = new File(Rutas.path_ingreso);
         ArrayList<Ingreso> list = getLista(file);
         for(int i=0;i<list.size();i++){
             if(list.get(i).getId_ingreso()==id){
@@ -310,7 +310,7 @@ public class Ingreso extends FileManager {
     }
     
     private void insert(String id,String id_cuenta,String id_origen_ingreso,String id_persona, String monto, String time, String comentario) throws IOException{
-        File file = new File(path_ingreso);
+        File file = new File(Rutas.path_ingreso);
         if(Exists(file) && file.isFile()){
             String ingreso=geTextFile(file);
             FileWriter writer = new FileWriter(file);
@@ -320,7 +320,7 @@ public class Ingreso extends FileManager {
     }
     
     private void writeTable(ArrayList<Ingreso> list) throws IOException{
-        File file = new File(path_ingreso);
+        File file = new File(Rutas.path_ingreso);
         delete(file);
         for(int j=0;j<list.size();j++){
             insert(Integer.toString(list.get(j).getId_ingreso()), 
@@ -334,7 +334,7 @@ public class Ingreso extends FileManager {
     }
     
     public boolean delete(int id) throws IOException{
-        File file = new File(path_ingreso);
+        File file = new File(Rutas.path_ingreso);
         ArrayList<Ingreso> list = getLista(file);
         for(int i=0;i<list.size();i++){
             if(list.get(i).getId_ingreso()==id){

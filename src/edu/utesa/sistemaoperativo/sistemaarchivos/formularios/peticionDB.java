@@ -8,6 +8,7 @@ package edu.utesa.sistemaoperativo.sistemaarchivos.formularios;
 import com.google.gson.Gson;
 import edu.utesa.sistemaoperativo.sistemaarchivos.entidades.Comunication;
 import edu.utesa.sistemaoperativo.sistemaarchivos.entidades.FileManager;
+import edu.utesa.sistemaoperativo.sistemaarchivos.entidades.Rutas;
 import edu.utesa.sistemaoperativo.sistemaarchivos.entidades.solicitud;
 import edu.utesa.sistemaoperativo.sistemaarchivos.utilidades.Security;
 import java.io.File;
@@ -79,7 +80,7 @@ public class peticionDB extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Tabla:");
 
-        cmbGrupoPed.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Grupo 2", "Grupo 3", "Grupo 1" }));
+        cmbGrupoPed.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Grupo 2", "Grupo 3" }));
         cmbGrupoPed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbGrupoPedActionPerformed(evt);
@@ -196,6 +197,11 @@ public class peticionDB extends javax.swing.JFrame {
 
         btnDecriptar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnDecriptar.setText("Decriptar Datos");
+        btnDecriptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDecriptarActionPerformed(evt);
+            }
+        });
 
         txtAreaReso.setColumns(20);
         txtAreaReso.setRows(5);
@@ -349,9 +355,9 @@ public class peticionDB extends javax.swing.JFrame {
             // TODO add your handling code here:
             cm.readRequest();
             FileManager fl  = new FileManager();
-            File file = new File(fl.path_respuesta);
+            File file = new File(Rutas.path_cuenta);
        
-            txtAreaReso.setText(fl.geTextFile(file));
+            txtAreaReso.setText(fl.getLineFile(file));
         } catch (IOException ex) {
             Logger.getLogger(peticionDB.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -359,6 +365,11 @@ public class peticionDB extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_btnPresentarDataActionPerformed
+
+    private void btnDecriptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDecriptarActionPerformed
+        // TODO add your handling code here:
+        txtAreaReso.setText(Security.decrypt(txtAreaReso.getText()));
+    }//GEN-LAST:event_btnDecriptarActionPerformed
 
     /**
      * @param args the command line arguments

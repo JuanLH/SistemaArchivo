@@ -39,7 +39,7 @@ public class Persona extends FileManager {
     public Persona() {}
 
     public String getPath_persona() {
-        return path_persona;
+        return Rutas.path_persona;
     }
        
     public int getId_persona() {
@@ -82,8 +82,8 @@ public class Persona extends FileManager {
         this.telefono = telefono;
     }
     public boolean deletePersona(int id) throws IOException{
-        File file = new File(path_persona);
-        ArrayList<Persona> list = getListaPersona(file);
+        File file = new File(Rutas.path_persona);
+        ArrayList<Persona> list = getLista(file);
         for(int i=0;i<list.size();i++){
             if(list.get(i).getId_persona()==id){
                 list.remove(i);
@@ -94,8 +94,8 @@ public class Persona extends FileManager {
         return false;
     }
     public boolean updatePersona(int id,String nombre,String apellido,String direccion,String telefono) throws IOException{
-        File file = new File(path_persona);
-        ArrayList<Persona> list = getListaPersona(file);
+        File file = new File(Rutas.path_persona);
+        ArrayList<Persona> list = getLista(file);
         for(int i=0;i<list.size();i++){
             if(list.get(i).getId_persona()==id){
                 list.get(i).setNombre(nombre);
@@ -112,7 +112,7 @@ public class Persona extends FileManager {
     }
     
     private void insertPersona(String id,String nombre,String apellido,String direccion,String telefono) throws IOException{
-        File file = new File(path_persona);
+        File file = new File(Rutas.path_persona);
         if(Exists(file) && file.isFile()){
             String per=geTextFile(file);
             FileWriter writer = new FileWriter(file);
@@ -122,8 +122,8 @@ public class Persona extends FileManager {
     }
     
     public void addPersona(String nombre,String apellido,String direccion,String telefono) throws IOException{
-        File file = new File(path_persona);
-        ArrayList<Persona> list = getListaPersona(file);
+        File file = new File(Rutas.path_persona);
+        ArrayList<Persona> list = getLista(file);
         
         if(Exists(file) && file.isFile()){
             
@@ -154,8 +154,8 @@ public class Persona extends FileManager {
         
     }
     
-    public ArrayList<Persona> getListaPersona(File file) throws FileNotFoundException, IOException{
-        ArrayList<Persona> list = new ArrayList<Persona>();
+    public ArrayList<Persona> getLista(File file) throws FileNotFoundException, IOException{
+           ArrayList<Persona> list = new ArrayList<Persona>();
   
             // create input stream from file input stream
             InputStream is = new FileInputStream(file);
@@ -263,7 +263,7 @@ public class Persona extends FileManager {
     }
     
     private void writeTable(ArrayList<Persona> list) throws IOException{
-        File file = new File(path_persona);
+        File file = new File(Rutas.path_persona);
         delete(file);
         for(int j=0;j<list.size();j++){
             insertPersona(Integer.toString(list.get(j).getId_persona()), list.get(j).getNombre(), list.get(j).getApellido(), list.get(j).getDireccion(), list.get(j).getTelefono());
@@ -271,8 +271,8 @@ public class Persona extends FileManager {
     }
   
     public void printTable() throws IOException{
-        File file = new File(path_persona);
-        ArrayList<Persona> list = getListaPersona(file);
+        File file = new File(Rutas.path_persona);
+        ArrayList<Persona> list = getLista(file);
         for(int i=0;i<list.size();i++){
             prnln(list.get(i).getId_persona()+" + "+list.get(i).getNombre()+" + "+list.get(i).getApellido()+" + "+list.get(i).getDireccion()+" + "+list.get(i).getTelefono());
         }

@@ -69,7 +69,7 @@ public class Cuenta extends FileManager{
     }
 
     public String getPath_cuenta() {
-        return path_cuenta;
+        return Rutas.path_cuenta;
     }
     
     
@@ -168,7 +168,7 @@ public class Cuenta extends FileManager{
     }
     
      public void add(String id_tipo_cuenta,String descripcion,String balance) throws IOException{
-        File file = new File(path_cuenta);
+        File file = new File(Rutas.path_cuenta);
         ArrayList<Cuenta> list = getLista(file);
         
         if(Exists(file) && file.isFile()){
@@ -201,7 +201,7 @@ public class Cuenta extends FileManager{
     }
      
      public boolean update(int id,String id_tipo_cuenta,String descripcion,String balance) throws IOException{
-        File file = new File(path_cuenta);
+        File file = new File(Rutas.path_cuenta);
         ArrayList<Cuenta> list = getLista(file);
         for(int i=0;i<list.size();i++){
             if(list.get(i).getId_cuenta()==id){
@@ -217,7 +217,7 @@ public class Cuenta extends FileManager{
     }
      
     private void insert(String id,String id_tipo_cuenta,String descripcion,String balance) throws IOException{
-        File file = new File(path_cuenta);
+        File file = new File(Rutas.path_cuenta);
         if(Exists(file) && file.isFile()){
             String cuenta=geTextFile(file);
             FileWriter writer = new FileWriter(file);
@@ -227,7 +227,7 @@ public class Cuenta extends FileManager{
     } 
      
      private void writeTable(ArrayList<Cuenta> list) throws IOException{
-        File file = new File(path_cuenta);
+        File file = new File(Rutas.path_cuenta);
         delete(file);
         for(int j=0;j<list.size();j++){
             insert(Integer.toString(list.get(j).getId_cuenta()),
@@ -238,7 +238,7 @@ public class Cuenta extends FileManager{
     }
      
      public boolean delete(int id) throws IOException{
-        File file = new File(path_cuenta);
+        File file = new File(Rutas.path_cuenta);
         ArrayList<Cuenta> list = getLista(file);
         for(int i=0;i<list.size();i++){
             if(list.get(i).getId_cuenta()==id){

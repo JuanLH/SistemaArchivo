@@ -121,7 +121,7 @@ public class Cuenta_vs_Persona extends FileManager{
    
     
     public boolean update_cvp_Persona(int id_cuenta,int id_persona,int id_new_persona) throws IOException{
-        File file = new File(path_origen_ingreso);
+        File file = new File(Rutas.path_origen_ingreso);
         ArrayList<Cuenta_vs_Persona> list = getLista(file);
         for(int i=0;i<list.size();i++){
             if(list.get(i).getId_cuenta()==id_cuenta && list.get(i).getId_persona()==id_persona){
@@ -134,7 +134,7 @@ public class Cuenta_vs_Persona extends FileManager{
         
     }
      public boolean update_cvp_cuenta(int id_cuenta,int id_persona,int id_new_cuenta) throws IOException{
-        File file = new File(path_origen_ingreso);
+        File file = new File(Rutas.path_origen_ingreso);
         ArrayList<Cuenta_vs_Persona> list = getLista(file);
         for(int i=0;i<list.size();i++){
             if(list.get(i).getId_cuenta()==id_cuenta && list.get(i).getId_persona()==id_persona){
@@ -148,7 +148,7 @@ public class Cuenta_vs_Persona extends FileManager{
     }
     
     public boolean delete(int id_cuenta,int id_persona) throws IOException{
-        File file = new File(path_cuenta_vs_persona);
+        File file = new File(Rutas.path_cuenta_vs_persona);
         ArrayList<Cuenta_vs_Persona> list = getLista(file);
         for(int i=0;i<list.size();i++){
             if(list.get(i).getId_cuenta()==id_cuenta && list.get(i).getId_persona()==id_persona){
@@ -161,7 +161,7 @@ public class Cuenta_vs_Persona extends FileManager{
     }
     
     private void insert(int id_cuenta,int id_persona) throws IOException{
-        File file = new File(path_cuenta_vs_persona);
+        File file = new File(Rutas.path_cuenta_vs_persona);
         if(Exists(file) && file.isFile()){
             String c_vs_p=geTextFile(file);
             FileWriter writer = new FileWriter(file);
@@ -171,7 +171,7 @@ public class Cuenta_vs_Persona extends FileManager{
     }
     
     private void writeTable(ArrayList<Cuenta_vs_Persona> list) throws IOException{
-        File file = new File(path_origen_ingreso);
+        File file = new File(Rutas.path_origen_ingreso);
         delete(file);
         for(int j=0;j<list.size();j++){
             insert((list.get(j).getId_cuenta()), list.get(j).getId_persona());

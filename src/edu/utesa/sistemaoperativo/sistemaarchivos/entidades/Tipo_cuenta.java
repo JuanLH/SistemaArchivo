@@ -58,7 +58,7 @@ public class Tipo_cuenta extends FileManager {
     }
     
     public String getPath_tipo_cuenta() {
-        return path_tipo_cuenta;
+        return Rutas.path_tipo_cuenta;
     }
     
     public ArrayList<Tipo_cuenta>  getLista (File file) throws FileNotFoundException, IOException{
@@ -141,7 +141,7 @@ public class Tipo_cuenta extends FileManager {
     }
     
     public void add(String descripcion) throws IOException{
-        File file = new File(path_tipo_cuenta);
+        File file = new File(Rutas.path_tipo_cuenta);
         ArrayList<Tipo_cuenta> list = getLista(file);
         
         if(Exists(file) && file.isFile()){
@@ -174,7 +174,7 @@ public class Tipo_cuenta extends FileManager {
     }
     
     public boolean update(int id,String descripcion) throws IOException{
-        File file = new File(path_tipo_cuenta);
+        File file = new File(Rutas.path_tipo_cuenta);
         ArrayList<Tipo_cuenta> list = getLista(file);
         for(int i=0;i<list.size();i++){
             if(list.get(i).getId_tipo_cuenta()==id){
@@ -187,7 +187,7 @@ public class Tipo_cuenta extends FileManager {
     }
     
     public boolean delete(int id) throws IOException{
-        File file = new File(path_tipo_cuenta);
+        File file = new File(Rutas.path_tipo_cuenta);
         ArrayList<Tipo_cuenta> list = getLista(file);
         for(int i=0;i<list.size();i++){
             if(list.get(i).getId_tipo_cuenta()==id){
@@ -200,7 +200,7 @@ public class Tipo_cuenta extends FileManager {
     }
     
     private void insert(String id,String descripcion) throws IOException{
-        File file = new File(path_tipo_cuenta);
+        File file = new File(Rutas.path_tipo_cuenta);
         if(Exists(file) && file.isFile()){
             String tipo=geTextFile(file);
             FileWriter writer = new FileWriter(file);
@@ -210,7 +210,7 @@ public class Tipo_cuenta extends FileManager {
     }
     
     private void writeTable(ArrayList<Tipo_cuenta> list) throws IOException{
-        File file = new File(path_tipo_cuenta);
+        File file = new File(Rutas.path_tipo_cuenta);
         delete(file);
         for(int j=0;j<list.size();j++){
             insert(Integer.toString(list.get(j).getId_tipo_cuenta()), list.get(j).getDescripcion());

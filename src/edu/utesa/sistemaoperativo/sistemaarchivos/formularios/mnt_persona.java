@@ -45,7 +45,7 @@ public class mnt_persona extends javax.swing.JDialog {
     public final void setNextId(){
         ArrayList<Persona> list;
         try {
-            list = p.getListaPersona(file);
+            list = p.getLista(file);
             if(!list.isEmpty())
                 txtId.setText(Integer.toString(list.get(list.size()-1).getId_persona()+1));
             else
@@ -224,7 +224,7 @@ public class mnt_persona extends javax.swing.JDialog {
         int k;
         ArrayList<Persona> list;
         try {
-            list = p.getListaPersona(file);
+            list = p.getLista(file);
             for(Persona per : list){
                 k=0;
                 Object[] fila = new Object[5];

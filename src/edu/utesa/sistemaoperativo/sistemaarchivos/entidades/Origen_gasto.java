@@ -50,7 +50,7 @@ public class Origen_gasto extends FileManager{
     }
 
     public String getPath_origen_gasto() {
-        return path_origen_gasto;
+        return Rutas.path_origen_gasto;
     }
     
     
@@ -120,7 +120,7 @@ public class Origen_gasto extends FileManager{
     }
     
      public void add(String descripcion) throws IOException{
-        File file = new File(path_origen_gasto);
+        File file = new File(Rutas.path_origen_gasto);
        ArrayList<Origen_gasto> list = getLista(file);
         
         if(Exists(file) && file.isFile()){
@@ -152,7 +152,7 @@ public class Origen_gasto extends FileManager{
     }
      
     public boolean update(int id,String descripcion) throws IOException{
-        File file = new File(path_origen_gasto);
+        File file = new File(Rutas.path_origen_gasto);
         ArrayList<Origen_gasto> list = getLista(file);
         for(int i=0;i<list.size();i++){
             if(list.get(i).getId_origen_gasto()==id){
@@ -166,7 +166,7 @@ public class Origen_gasto extends FileManager{
     }
     
     private void insert(String id_origen_gasto,String descripcion) throws IOException{
-        File file = new File(path_origen_gasto);
+        File file = new File(Rutas.path_origen_gasto);
         if(Exists(file) && file.isFile()){
             String origen_gasto=geTextFile(file);
             FileWriter writer = new FileWriter(file);
@@ -176,7 +176,7 @@ public class Origen_gasto extends FileManager{
     }
     
     public boolean delete(int id) throws IOException{
-        File file = new File(path_origen_gasto);
+        File file = new File(Rutas.path_origen_gasto);
         ArrayList<Origen_gasto> list = getLista(file);
         for(int i=0;i<list.size();i++){
             if(list.get(i).getId_origen_gasto()==id){
@@ -190,7 +190,7 @@ public class Origen_gasto extends FileManager{
     
     
     private void writeTable(ArrayList<Origen_gasto> list) throws IOException{
-        File file = new File(path_origen_gasto);
+        File file = new File(Rutas.path_origen_gasto);
         delete(file);
         for(int j=0;j<list.size();j++){
             insert(Integer.toString(list.get(j).getId_origen_gasto()),list.get(j).getDecripcion());
