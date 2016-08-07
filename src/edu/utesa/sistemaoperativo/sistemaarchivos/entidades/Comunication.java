@@ -40,12 +40,25 @@ public class Comunication extends FileManager {
         prnln("Mensage encriptado "+mensage);
         writer.write(mensage);
         writer.flush();
+        writer.close();
         prnln("++Se inserto correctamente");
     }
     
     public void readRequest() throws IOException{
         File soliG2 = new File(Rutas.G1_G2_solicitudG2);
         File soliG3 = new File(Rutas.G1_G3_solicitudG3);
+        if(!isEmpy(soliG3)){
+            String peticion = getLineFile(soliG3);
+            Gson json = new Gson();
+            prnln("Peticion  G3 encriptada --> "+peticion);
+            String mensage = Security.decrypt(peticion);
+            prnln("Peticion G3 decriptada --> "+mensage);
+            solicitud soli = json.fromJson(mensage, solicitud.class);
+            prnln("Grupo --> "+soli.getGrupo());
+            prnln("Tabla --> "+soli.getTabla());
+            makeResponse(soli);
+        }
+        
         if(!isEmpy(soliG2)){
             String peticion = getLineFile(soliG2);
             Gson json = new Gson();
@@ -58,17 +71,7 @@ public class Comunication extends FileManager {
             makeResponse(soli);
         }
         
-        if(!isEmpy(soliG3)){
-            String peticion = getLineFile(soliG3);
-            Gson json = new Gson();
-            prnln("Peticion  G3 encriptada --> "+peticion);
-            String mensage = Security.decrypt(peticion);
-            prnln("Peticion G3 decriptada --> "+mensage);
-            solicitud soli = json.fromJson(mensage, solicitud.class);
-            prnln("Grupo --> "+soli.getGrupo());
-            prnln("Tabla --> "+soli.getTabla());
-            makeResponse(soli);
-        }
+        
         
         
         
@@ -216,6 +219,41 @@ public class Comunication extends FileManager {
         prnln(mensage);
         writer.write(mensage);
         writer.flush();
+        writer.close();
         prnln("++Se inserto correctamente");
+    }
+    
+    public String readResponse(String Grupo) throws IOException{
+        File respG2 = new File(Rutas.G1_G2_respuestaG2);
+        File respG3 = new File(Rutas.G1_G3_respuestaG3);
+        
+        if(Grupo.equals("Grupo 2")){
+            String respuesta = getLineFile(respG2);
+            Gson json = new Gson();
+            prnln("Respuesta G2 encriptada --> "+respuesta);
+            String mensage = Security.decrypt(respuesta);
+            prnln("Respuesta G2 decriptada --> "+mensage);
+            //respuesta resp = json.fromJson(mensage, respuesta.class);
+            //prnln("Estad -->"+resp.getEstado());
+            //prnln("Grupo --> "+resp.getGrupo());
+            //prnln("Respuesta --> "+resp.getRespuesta());
+            return respuesta;//Edit
+            //return resp.getRespuesta();
+        }
+        else{
+            String respuesta = getLineFile(respG3);
+            Gson json = new Gson();
+            prnln("Respuesta G3 encriptada --> "+respuesta);
+            String mensage = Security.decrypt(respuesta);
+            prnln("Respuesta G3 decriptada --> "+mensage);
+            //respuesta resp = json.fromJson(mensage, respuesta.class);
+            //prnln("Estado -->"+resp.getEstado());
+            //prnln("Grupo --> "+resp.getGrupo());
+            //prnln("Respuesta --> "+resp.getRespuesta());
+            ///return resp.getRespuesta();
+            return respuesta;//Edit
+            
+        }
+       
     }
 }

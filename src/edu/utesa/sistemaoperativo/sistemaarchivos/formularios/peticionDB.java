@@ -63,6 +63,7 @@ public class peticionDB extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         txtAreaReso = new javax.swing.JTextArea();
         cmbGrupoResp = new javax.swing.JComboBox<>();
+        btnPresentarData1 = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
 
@@ -209,6 +210,14 @@ public class peticionDB extends javax.swing.JFrame {
 
         cmbGrupoResp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Grupo 2", "Grupo 3" }));
 
+        btnPresentarData1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnPresentarData1.setText("Responder");
+        btnPresentarData1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPresentarData1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -223,7 +232,8 @@ public class peticionDB extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnPresentarData)
-                            .addComponent(btnDecriptar))
+                            .addComponent(btnDecriptar)
+                            .addComponent(btnPresentarData1))
                         .addGap(44, 44, 44)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 569, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(28, Short.MAX_VALUE))
@@ -240,9 +250,13 @@ public class peticionDB extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(btnPresentarData, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnDecriptar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                        .addComponent(btnDecriptar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnPresentarData1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 8, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         btnLimpiar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -297,7 +311,7 @@ public class peticionDB extends javax.swing.JFrame {
     @SuppressWarnings("empty-statement")
     private void cmbGrupoPedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbGrupoPedActionPerformed
         // TODO add your handling code here:
-        String []  tablasGR3={"TablaGR1","TablaGR1","TablaGR1"};
+        String []  tablasGR3={"Cajeros","Clientes","Detalles","Facturas","Mecanicos","Piezas","Reparaciones","Servicios","Vehiculos"};
         String []  tablasGR2={"TablaGR2","TablaGR2","TablaGR2"};
         String []  tablasGR1 = {"Cuenta","Gasto","Ingreso","Origen_gasto","Origen_ingreso"};
         cmbTabla.removeAllItems();
@@ -353,11 +367,10 @@ public class peticionDB extends javax.swing.JFrame {
     private void btnPresentarDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPresentarDataActionPerformed
         try {
             // TODO add your handling code here:
-            cm.readRequest();
-            FileManager fl  = new FileManager();
-            File file = new File(Rutas.path_cuenta);
+            String jsonResp = cm.readResponse(cmbGrupoResp.getSelectedItem().toString());
+            
        
-            txtAreaReso.setText(fl.getLineFile(file));
+            txtAreaReso.setText(jsonResp);
         } catch (IOException ex) {
             Logger.getLogger(peticionDB.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -370,6 +383,15 @@ public class peticionDB extends javax.swing.JFrame {
         // TODO add your handling code here:
         txtAreaReso.setText(Security.decrypt(txtAreaReso.getText()));
     }//GEN-LAST:event_btnDecriptarActionPerformed
+
+    private void btnPresentarData1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPresentarData1ActionPerformed
+        try {
+            // TODO add your handling code here:
+            cm.readRequest();
+        } catch (IOException ex) {
+            Logger.getLogger(peticionDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnPresentarData1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -412,6 +434,7 @@ public class peticionDB extends javax.swing.JFrame {
     private javax.swing.JButton btnEnviar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnPresentarData;
+    private javax.swing.JButton btnPresentarData1;
     private javax.swing.JButton btnPresentarIns;
     private javax.swing.JButton btnSalir;
     private javax.swing.JComboBox<String> cmbGrupoPed;
